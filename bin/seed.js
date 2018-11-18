@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const Celebrity = require("../models/alcove-model.js");
-const Movie = require("../models/message-model.js");
+const Alcove = require("../models/alcove-model.js");
+const Message = require("../models/message-model.js");
 const User = require("../models/user-model.js");
 
 
@@ -21,10 +21,8 @@ mongoose
   ];
 
 
-
-
 Alcove.create(alcoveData)
-.then(movie => {
+.then(alcoveResult => {
 console.log(`${alcove.length} was correctly inserted!`);
 })
 .catch(err => {

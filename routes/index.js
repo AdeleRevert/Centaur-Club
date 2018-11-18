@@ -1,13 +1,13 @@
 const express      = require('express');
-const router       = express.Router();
+const passportRouter       = express.Router();
 const Alcove       = require ("./models/alcove-model.js");
 const Message      = require ("./models/message-model.js");
 const User         = require ("./models/user-model.js");
 
 
 //SET ROUTES
-// /
-router.get('/', (req, res, next) => {
+// / home page
+passportRouter.get('/', (req, res, next) => {
   if(req.user){
     console.log("LOGGED IN", req.user) 
   }
@@ -16,4 +16,4 @@ router.get('/', (req, res, next) => {
 });
 
 
-module.exports = router;
+module.exports = passportRouter;
