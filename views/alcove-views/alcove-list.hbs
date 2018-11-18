@@ -1,0 +1,13 @@
+<h2>All of our Alcoves</h2>
+
+<a href="/alcove/add">Add a New Alcove</a>
+
+<ul>
+  {{#each alcoveArray}}
+  <li>
+    <h4>{{this.name}}</h4>
+    <p>{{this.description}}</p>
+    <img src="{{this.pictureUrl}}">
+  </li>
+  {{/each}}
+</ul>

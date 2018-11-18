@@ -29,7 +29,7 @@ passportRouter.post("/process-alcove", (req, res, next) => {
 
 // ACCES YOUR ALCOVES ON YOUR PRIVATE PAGE
 passportRouter.get("/private-page", (req, res, next) => {
-  Alcove.find({ owner: $eq req.user._id })
+  Alcove.find({ owner: { $eq: req.user._id} })
   .sort({createdAt: -1 })
   .then(alcoveResults => {
     res.locals.alcoveArray = alcoveResults;
@@ -37,5 +37,16 @@ passportRouter.get("/private-page", (req, res, next) => {
   })
   .catch(err => next(err));
 })
+
+// ACCESS THE LIST OF ALCOVE (ONLY FOR LOGGED-IN USERS)
+passportRouter.get("/alcove-list", (req, res, next) => {
+  if(!req.user) {
+    req.flash("error", "You have to be logged-in to see the list of alcoves");
+  }
+  else {
+    res.render("alcove-views/alcove-list.hbs");
+  }
+})
+
 
 module.exports = passportRouter;
