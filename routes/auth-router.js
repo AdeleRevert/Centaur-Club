@@ -8,8 +8,8 @@ const User = require("../models/user-model.js");
 
 //DEFINE ROUTES
 //private
-passportRouter.get("/", (req, res, next) => {
-  res.render("/");
+passportRouter.get("/private-page", (req, res, next) => {
+  res.render("auth-views/private-page.hbs");
 });
 
 //signup

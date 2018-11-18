@@ -1,1 +1,37 @@
-<h2>Welcome to your private page</h2>
+<h2>Welcome to your private page {{currentUser.name}}</h2>
+
+{{> flash_messages}}
+
+<h3>Your Alcoves</h3>
+
+<a href="/alcove/add">Add an Alcove</a>
+
+<ul>
+  {{#each alcoveArray}}
+  <li>
+    <h4>{{this.name}}</h4>
+    <p>{{this.description}}</p>
+    <img src="{{this.pictureUrl}}">
+  </li>
+  {{/each}}
+</ul>
+
+
+<h3>Your User Settings</h3>
+
+<form action="/process-settings" method="POST">
+  <label>
+    Full Name:
+    <input type="text" name="name" value="{{currentUser.name}}"
+        placeholder="{{currentUser.name}}" />
+  </label>
+
+  <label>
+    Email:
+    <input type="email" name="email" value="{{currentUser.email}}"
+        placeholder="{{currentUser.email}}" />
+  </label>
+
+  <button>Save Settings</button>
+</form>
+

@@ -1,8 +1,6 @@
 const express      = require('express');
 const passportRouter       = express.Router();
-const Alcove       = require ("./models/alcove-model.js");
-const Message      = require ("./models/message-model.js");
-const User         = require ("./models/user-model.js");
+const User         = require ("../models/user-model.js");
 
 
 //SET ROUTES
@@ -15,5 +13,20 @@ passportRouter.get('/', (req, res, next) => {
   res.render('index');
 });
 
+// UPDATE USER SETTINGS
+passportRouter.post("/process-settings", (req, res, next) => {
+  const { name, email } = req.body;
+
+  User.findByIdAndUpdate(
+    req.user._id,
+    { $set: { name, email }},
+    { runValidators: true },
+  )
+  .then(userDoc => {
+    req.flash("success", "Settings saved");
+    res.redirect("/private-page");
+  })
+  .catch(err => next(err));
+})
 
 module.exports = passportRouter;

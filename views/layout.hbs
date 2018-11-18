@@ -8,9 +8,27 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+<header>
+  <h1>{{title}}</h1>
+
+  <nav>
+    <a href="/">Home</a>
+    {{#if currentUser}}
+    <b>{{currentUser.name}}</b>
+    <a href="/private-page">My Private Page</a>
+    <a href="/logout">Log Out</a>
+    {{else}}
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Log In</a>
+    {{/if}}
+  </nav>
+</header>
 
   {{{body}}}
 
+<footer>
+  <p>Made by <a href="https://www.linkedin.com/in/adele-revert/">Adèle Revert</a> & <a href="https://www.linkedin.com/in/antoinelanoe/">Antoine Lanoe</a></p>
+</footer>
 
   <script src="/javascripts/script.js"></script>
 </body>
